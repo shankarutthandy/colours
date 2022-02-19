@@ -1,0 +1,10 @@
+.bodycontainer{
+    display: flex;
+}
+.palette{
+    width: 100%;
+    height:calc(100vh - 109px);
+    display: flex;
+}
+.menubar{
+}

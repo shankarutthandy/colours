@@ -1,0 +1,38 @@
+.strip{
+    width: 20%;
+    height:100%;
+}
+.optionsbar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.393);
+}
+.strip:hover .op0{
+    opacity: 1;
+    transition: 0.8s;
+}
+.opt{
+    margin-top: 60px;
+}
+.opt:first-child{
+    margin-top: 0;
+}
+.opt:hover{
+    color:black;
+}
+.name{
+    color: black;
+    font-size: 1.5rem;
+    font-family: 'Staatliches', cursive;
+}
+.locked{
+    color: black;
+    opacity: 1;
+    transform: scale(1.8);
+}
+.op0{
+    opacity: 0;
+}
