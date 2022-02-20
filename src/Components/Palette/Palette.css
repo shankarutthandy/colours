@@ -1,10 +1,77 @@
 .bodycontainer{
     display: flex;
+    height:calc(100vh - 108px)
 }
 .palette{
     width: 100%;
-    height:calc(100vh - 109px);
+    height:100%;
     display: flex;
 }
 .menubar{
+    width: 400px;
+    height:100%;
+    border: 1px solid rgba(0, 0, 0, 0.363);
+    border-radius: 5px 0 0 5px;
+}
+.menubarclosed{
+    display: none;
+}
+.menutop{
+    display: flex;
+    height:60px;
+    justify-content: center;
+    font-size: large; 
+    font-weight: 600; 
+    font-family: 'Source Code Pro', monospace; 
+    color: black;
+    background-color: rgba(0, 0, 0, 0.062)
+}
+.menutopopt{
+    padding: 20px;
+    cursor: pointer;
+}
+.menutopopt:hover{
+    color:black;
+    border-bottom: 1px solid black;
+}
+.closefav{
+    color:blue;
+    padding: 20px;
+    border-bottom: 1px solid blue;
+}
+.closesaved{
+    color:blue;
+    padding: 20px;
+    border-bottom: 1px solid blue;
+}
+.reslist{
+    overflow-y: scroll;
+    height: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    padding-top: 10px;
+}
+.favourite{
+    width: 90%;
+    min-height:40px;
+    margin-top:10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+::-webkit-scrollbar{
+    width: 1px;
+}
+.menupalette{
+    display: flex;
+    width: 90%;
+    min-height:40px;
+    margin-top:10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.menupalettecolor{
+    flex:2;
+    height: 100%;
 }

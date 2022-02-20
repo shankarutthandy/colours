@@ -7,29 +7,32 @@ import ShareIcon from '@mui/icons-material/Share';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MenuIcon from '@mui/icons-material/Menu';
 import './TopBar.css'
-export default function TopBar({onClick}) {
+export default function TopBar({onClick,onFavPalette,onMenuClick,saved}) {
+  var favclass=saved?'savedicon':'lgtodrk';
   return (
     <div className="topbar">
-        <div className="title">
+        <div className="title pointer">
             <span>colours</span>
         </div>
         <hr className='line'/>
         <div className="navbar">
             <span className='inst'>Press shuffle to generate a random color palette ! </span>
             <div className="icons">
+            <div className="pair1">
+            <ShuffleOutlinedIcon className='lgtodrk pointer' onClick={onClick}/>
+            </div>
+            <div className="pair2">
+            <ArrowBackIcon className='lgtodrk pointer'/>
+            <ArrowForwardIcon className='lgtodrk pointer'/>
+            </div>
+            <div className="pair3">
+            <RemoveRedEyeIcon className='lgtodrk pointer'/><span>View</span>
+            <ShareIcon className='lgtodrk pointer'/><span>Export</span>
+            <FavoriteIcon className={`${favclass} pointer`} onClick={onFavPalette}/><span>Save</span>
+            </div>
             <div className="pair1 pointer">
-            <ShuffleOutlinedIcon className='grow' onClick={onClick}/>
-            </div>
-            <div className="pair2 pointer">
-            <ArrowBackIcon className='grow'/>
-            <ArrowForwardIcon className='grow'/>
-            </div>
-            <div className="pair3 pointer">
-            <RemoveRedEyeIcon className='grow'/><span>View</span>
-            <ShareIcon className='grow'/><span>Export</span>
-            <FavoriteIcon className='grow'/><span>Save</span>
-            </div>
-            <div className="pair1 pointer"><MenuIcon className='grow'/></div>
+              <MenuIcon className='pointer' onClick={onMenuClick}/>
+              </div>
             </div>
         </div>
     </div>
