@@ -3,6 +3,7 @@ import './Palette.css'
 import ColorStrip from '../ColorStrip/ColorStrip'
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import MenuWrapper from './MenuWrapper'
 export default class Palette extends Component {
   constructor(){
     super();
@@ -77,15 +78,15 @@ export default class Palette extends Component {
         onCopy={this.props.onCopyColor}
         />
       </div>
-      <div className={menuclass}>
-      <div className="menutop">
-        <span className={favourite} onClick={this.onMenuFavClick}>Favourites</span>
-        <span className={saved} onClick={this.onMenuSavedClick}>Saved</span>
-      </div>
-      <div className="reslist">
-      {this.state.favourite?fav:(this.state.saved?sav:null)}
-      </div>
-      </div>
+      <MenuWrapper vis={this.props.menu}>
+        <div className="menutop">
+          <span className={favourite} onClick={this.onMenuFavClick}>Favourites</span>
+          <span className={saved} onClick={this.onMenuSavedClick}>Saved</span>
+        </div>
+        <div className="reslist">
+        {this.state.favourite?fav:(this.state.saved?sav:null)}
+        </div>
+      </MenuWrapper>
     </div>
     )
   }

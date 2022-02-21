@@ -1,9 +1,10 @@
 .strip{
     width: 20%;
     height:100%;
+    transition: 0.5s;
 }
 .strip:hover{
-    filter:brightness(60%);
+    filter:brightness(80%);
 }
 .optionsbar{
     display: flex;
