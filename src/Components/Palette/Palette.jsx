@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './Palette.css'
 import ColorStrip from '../ColorStrip/ColorStrip'
+import DeleteIcon from '@mui/icons-material/Delete';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 export default class Palette extends Component {
   constructor(){
     super();
@@ -19,12 +21,17 @@ export default class Palette extends Component {
     var menuclass=this.props.menu?'menubar':'menubarclosed';
     var favourite=this.state.favourite?'closefav':'menutopopt';
     var saved=this.state.saved?'closesaved':'menutopopt';
-    var fav=this.props.favourites.length?(this.props.favourites.map((e,key)=>{return (<div  style={{backgroundColor:e}} className="favourite items" key={key}></div>)})):null;
+    var fav=this.props.favourites.length?(this.props.favourites.map((e,key)=>{return (<div className='favcolor' key={key}><div  style={{backgroundColor:e}} className="favourite" onClick={()=>this.props.onCopyColor(e)} key={key}>
+    <ContentCopyIcon className="copy"/>
+    </div><div className='deleteopt' onClick={()=>{this.props.onFavDelete(key);this.setState({saved:false})}}><DeleteIcon className='deleteicon'/></div></div>)})):null;
     var sav=null;
     if(this.props.saves.length>0)
     {
       sav=this.props.saves.map((e,key)=>{
-      return (<div className='menupalette' key={key}>{e.map((col,k)=>{ return (<div className='menupalettecolor' key={k} style={{backgroundColor:col}}></div>)})}</div>)});
+      return (<div className='menupalette' key={key} onClick={()=>this.props.onPaletteClick(key)}>
+        {e.map((col,k)=>{ return (<div className='menupalettecolor' key={k} style={{backgroundColor:col}}></div>)})}
+        <div className="deleteopt" onClick={()=>{this.props.onPaletteDelete(key);this.setState({saved:true})}}><DeleteIcon className='deleteicon'/></div>
+      </div>)});
     }
     return (
     <div className="bodycontainer">
@@ -35,6 +42,7 @@ export default class Palette extends Component {
         onLock={()=>this.props.onLock(0)}
         onFavColor={this.props.onFavColor}
         added={this.props.addedFav[0]}
+        onCopy={this.props.onCopyColor}
         />
         <ColorStrip 
         color={this.props.colors[1]} 
@@ -42,6 +50,7 @@ export default class Palette extends Component {
         onLock={()=>this.props.onLock(1)}
         onFavColor={this.props.onFavColor}
         added={this.props.addedFav[1]}
+        onCopy={this.props.onCopyColor}
         />
         <ColorStrip 
         color={this.props.colors[2]} 
@@ -49,6 +58,7 @@ export default class Palette extends Component {
         onLock={()=>this.props.onLock(2)}
         onFavColor={this.props.onFavColor}
         added={this.props.addedFav[2]}
+        onCopy={this.props.onCopyColor}
         />
         <ColorStrip 
         color={this.props.colors[3]} 
@@ -56,6 +66,7 @@ export default class Palette extends Component {
         onLock={()=>this.props.onLock(3)}
         onFavColor={this.props.onFavColor}
         added={this.props.addedFav[3]}
+        onCopy={this.props.onCopyColor}
         />
         <ColorStrip 
         color={this.props.colors[4]} 
@@ -63,6 +74,7 @@ export default class Palette extends Component {
         onLock={()=>this.props.onLock(4)}
         onFavColor={this.props.onFavColor}
         added={this.props.addedFav[4]}
+        onCopy={this.props.onCopyColor}
         />
       </div>
       <div className={menuclass}>

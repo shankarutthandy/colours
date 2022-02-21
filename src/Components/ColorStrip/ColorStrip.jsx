@@ -5,6 +5,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import TextureIcon from '@mui/icons-material/Texture';
 import StarIcon from '@mui/icons-material/Star';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 export default class ColorStrip extends Component {
   render() {
     
@@ -16,6 +17,7 @@ export default class ColorStrip extends Component {
             <TextureIcon className='bigger opt op0 pointer'/>
             {fav}
             {locked}
+            <ContentCopyIcon className='bigger opt op0 pointer' onClick={()=>this.props.onCopy(this.props.color)}/>
         </div>
         <div className="center"><span className="name">{this.props.color}</span></div>
         </div>

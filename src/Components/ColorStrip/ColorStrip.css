@@ -2,6 +2,9 @@
     width: 20%;
     height:100%;
 }
+.strip:hover{
+    filter:brightness(60%);
+}
 .optionsbar{
     display: flex;
     flex-direction: column;
@@ -41,7 +44,7 @@
 }
 .yellow:hover{
     color:gold !important;
-    background-color: rgba(0, 0, 0, 0.432);
+    background-color: rgba(0, 0, 0, 0.232);
     padding: 2px;
     border-radius: 50%;
 }

@@ -11,6 +11,16 @@ function find(e,arr){
   }
   return -1;
 }
+function arrayEquals(a,b){
+  var x=a.length;
+  var res=true;
+  for(let i=0;i<x;i++)
+  {
+    if(!res)return res;
+    res&=(a[i]===b[i])
+  }
+  return res;
+}
 export default class App extends Component {
   constructor(){
     super();
@@ -24,7 +34,7 @@ export default class App extends Component {
   }
   onShuffleClick=()=>{
     var o = Math.round, r = Math.random, s = 255;
-    var out=this.state.colors;
+    var out=[...this.state.colors];
     for(let i=0;i<5;i++)
     {
     if(this.state.shuffle[i])continue;
@@ -32,7 +42,10 @@ export default class App extends Component {
     }
     var s=true;
     this.state.shuffle.forEach(e=>{s=s&e});
-    this.setState({colors:out,saved:s});
+    var fav=this.state.favourite;
+    for(let i=0;i<5;i++)
+      fav[i]=fav[i]&this.state.shuffle[i]
+    this.setState({colors:out,saved:s,favourite:fav});
   }
   onLock=(idx)=>{
     var out=this.state.shuffle;
@@ -42,6 +55,7 @@ export default class App extends Component {
   onFavColor=(c)=>{
     let idx=find(c,this.state.colors);
     if(this.state.favourite[idx])return;
+    if(find(c,database.favouriteColors)>-1)return;
     database.favouriteColors.push(c);
     let v=this.state.favourite
     v[idx]=true
@@ -55,6 +69,31 @@ export default class App extends Component {
   }
   onMenuClick=()=>{
     this.setState({menu:!this.state.menu})
+  }
+  onPaletteDelete=(k)=>{
+    var del=database.favouritePalettes[k];
+    database.favouritePalettes.splice(k,1);
+    if(arrayEquals(del,this.state.colors)){
+      this.setState({saved:false});
+    }
+  }
+  onFavDelete=(k)=>{
+    var del=database.favouriteColors[k];
+    database.favouriteColors.splice(k,1);
+    var idx=find(del,this.state.colors)
+    if(idx>=0)
+    {
+      var fav=[...this.state.favourite];
+      fav[idx]=false;
+      this.setState({favourite:fav})
+    }
+  }
+  onUpdateColors=(c)=>{
+    var arr=[...database.favouritePalettes[c]]
+    this.setState({colors:arr,saved:true,favourite:[false,false,false,false,false]})
+  }
+  copyColorClipBoard=(c)=>{
+    navigator.clipboard.writeText(c);
   }
   render() {
     return (
@@ -73,6 +112,10 @@ export default class App extends Component {
       favourites={database.favouriteColors}
       saves={database.favouritePalettes}
       addedFav={this.state.favourite}
+      onPaletteDelete={this.onPaletteDelete}
+      onFavDelete={this.onFavDelete}
+      onPaletteClick={this.onUpdateColors}
+      onCopyColor={this.copyColorClipBoard}
       />
       </>
     )
