@@ -1,7 +1,7 @@
 .strip{
     width: 20%;
     height:100%;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 .strip:hover{
     filter:brightness(80%);
@@ -45,7 +45,4 @@
 }
 .yellow:hover{
     color:gold !important;
-    background-color: rgba(0, 0, 0, 0.232);
-    padding: 2px;
-    border-radius: 50%;
 }
